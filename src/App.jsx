@@ -1,11 +1,16 @@
 import "./App.css";
-import list from "./emojiList.json";
+import Footer from "./assets/components/Footer";
+import Lines from "./assets/components/Lines";
+import Search from "./assets/components/Search";
 import { useState } from "react";
 
 function App() {
+  // Création des States --------------
   const [search, setSearch] = useState("");
   const [copy, setCopy] = useState("");
+  //--------------------
 
+  // Gestion des évènements ----
   const handleSearch = (event) => {
     const value = event.target.value;
     return setSearch(value);
@@ -14,38 +19,13 @@ function App() {
   const handleCopy = (event) => {
     return console.log(event);
   };
+  //------------------
 
   return (
     <>
-      <header>
-        <h1>emoji search</h1>
-        <form>
-          <input
-            type="search"
-            name="search"
-            id="search"
-            placeholder="What emoji are you looking for ?"
-            onChange={handleSearch}
-          />
-        </form>
-      </header>
-      <main>
-        {search}
-        <ul>
-          {list.map(
-            (data) =>
-              data.keywords.includes(search) && (
-                <li key={data.title} onClick={handleCopy}>
-                  <p>
-                    {data.symbol} {data.title}
-                  </p>
-                  <span>Click to copy!</span>
-                </li>
-              )
-          )}
-        </ul>
-      </main>
-      <footer>Made with React at Le Reacteur by Jonathan</footer>
+      <Search onChange={handleSearch} />
+      <Lines value={search} onClick={handleCopy} />
+      <Footer />
     </>
   );
 }
