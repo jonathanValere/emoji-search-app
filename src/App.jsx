@@ -7,7 +7,6 @@ import { useState } from "react";
 function App() {
   // Création des States --------------
   const [search, setSearch] = useState("");
-  const [copy, setCopy] = useState("");
   //--------------------
 
   // Gestion des évènements ----
@@ -15,16 +14,12 @@ function App() {
     const value = event.target.value;
     return setSearch(value);
   };
-
-  const handleCopy = (event) => {
-    return console.log(event);
-  };
   //------------------
 
   return (
     <>
       <Search onChange={handleSearch} />
-      <Lines value={search} onClick={handleCopy} />
+      <Lines value={search} />
       <Footer />
     </>
   );
